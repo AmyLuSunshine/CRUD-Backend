@@ -31,4 +31,30 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.post('/', async (req, res) => {
+  try {
+    const newStudent = await Student.create(req.body);
+    res.status(201).json(newStudent);
+  } catch (error) {
+    console.error('Error creating student:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// DELETE /students/:id
+router.delete('/:id', async (req, res) => {
+  try {
+    const student = await Student.findByPk(req.params.id);
+    if (student) {
+      await student.destroy();
+      res.status(204).send();
+    } else {
+      res.status(404).json({ error: 'Student not found' });
+    }
+  } catch (error) {
+    console.error('Error deleting student:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 module.exports = router;
