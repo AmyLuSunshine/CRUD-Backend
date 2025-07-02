@@ -4,7 +4,8 @@ const sequelize = require("../database/db");
 const Student = sequelize.define("student", {
   firstName: { 
     type: DataTypes.STRING, 
-    allowNull: false
+    allowNull: false,
+    validate: { notEmpty: true }
   },
   lastName: {
     type: DataTypes.STRING,

@@ -6,6 +6,8 @@ const app = express();
 const apiRouter = require("./api");
 const { db } = require("./database");
 const cors = require("cors");
+const apiStudents = require("./api/student");
+const apiCampus = require("./api/campus");
 
 const PORT = process.env.PORT || 8080;
 
@@ -17,7 +19,8 @@ app.use(cors()); // allow all origins
 app.use(morgan("dev")); // logging middleware
 app.use(express.static(path.join(__dirname, "public"))); // serve static files from public folder
 app.use("/api", apiRouter); // mount api router
-
+app.use("/api/campus", require("./api/campus")); // campus routes
+app.use("/api/students", require("./api/student")); // student routes
 // error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
