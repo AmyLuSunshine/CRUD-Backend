@@ -1,7 +1,3 @@
-const db = require("./db");
-const Duck = require("./duck");
-
-module.exports = {
-  db,
-  Duck,
-};
+// database/index.js
+const db = require('./db');
+module.exports = { db };
