@@ -16,7 +16,8 @@ router.get('/', async (req, res) => {
 // Write a route to get a single campus by ID including its students
 router.get('/:id', async (req, res) => {
   try {
-    const campus = await Campus.findByPk(req.params.id, {
+    const campusId = parseInt(req.params.id);
+    const campus = await Campus.findByPk(campusId, {
       include: ['students'] // Assuming 'students' is the association name
     });
     if (campus) {
