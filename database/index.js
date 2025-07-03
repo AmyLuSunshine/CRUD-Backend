@@ -1,0 +1,3 @@
+// database/index.js
+const db = require('./db');
+module.exports = { db };
