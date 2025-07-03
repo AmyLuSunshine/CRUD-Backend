@@ -18,7 +18,6 @@ app.use(morgan("dev")); // logging middleware
 app.use(express.static(path.join(__dirname, "public"))); // serve static files from public folder
 app.use("/api", apiRouter); // mount api router
 
-// error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
