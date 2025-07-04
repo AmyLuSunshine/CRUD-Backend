@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Campus } = require('../models');
+const { Campus, Student } = require('../models');
 
 // GET /campus
 router.get('/', async (req, res) => {
@@ -18,7 +18,7 @@ router.get('/:id', async (req, res) => {
   try {
     const campusId = parseInt(req.params.id);
     const campus = await Campus.findByPk(campusId, {
-      include: ['students'] // Assuming 'students' is the association name
+      include: Student, // Assuming 'Student' is the association name
     });
     if (campus) {
       res.json(campus);
