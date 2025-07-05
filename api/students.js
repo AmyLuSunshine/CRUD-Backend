@@ -17,15 +17,14 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const student = await Student.findByPk(req.params.id, {
-      include: Campus // Assuming 'Campus' is the association name
+      include: Campus, // Assuming 'Campus' is the association name
     });
     if (student) {
       res.json(student);
     } else {
       res.status(404).json({ error: 'Student not found' });
     }
-  }
-  catch (error) {
+  } catch (error) {
     console.error('Error fetching student:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
